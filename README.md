@@ -21,7 +21,7 @@ Poisson Image Editing is that given a source image, a target image and a "mask" 
 <p>The image blending problem is considered as a least-squares problem, which requires solving Ax = b for every pixel under the mask.</br>
 The mask contains the same size with both the source and target images. In the final blending result, if the mask's value is 0, just take the target's pixel value at that pixel. If it is 1, set up a linear equation such that the gradient for a given pixel is the same in both the source and final images. Construct the equation:</br>
 <p align="center">4*source_pixel - Up - Down - Right -Left = gradient</p>
-</p>
+ According to the equation, construct A and b. A is N by N sparse matrix with coefficient. b is N by 1 matrix with color value. N is the total number of pixels. If the mask value is 0, the coefficient A for that pixel is 1, b is equal to target image pixel value; if the mask value is 1, the coefficient A need to fit the left side coefficient of above equation, b is equal to the gradient of source image calculation with equation. Since there exist RGB three colors, three linear system by different channels need to be constructed. Solved Ax = b, x is the final result image.</p>
 
 <h2>Result</h2>
 <p align="center">Graph Cut Result</P>
